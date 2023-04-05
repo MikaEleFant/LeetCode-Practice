@@ -13,19 +13,18 @@
 
 fun main() {
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        var x = 0
-        var y = 1
-        while (x < nums.size) {
-            y = 1
-            while (y < nums.size) {
-                if ((nums[x] + nums[y] == target) && (x != y)) {
-                    return (intArrayOf(x, y))
-                }
-                y++
+        var i = 0
+        var remainder: Int
+        var j = 0
+        while (i < nums.size) {
+            remainder = target - nums[i]
+            j = nums.indexOf(remainder)
+            if (j != -1 && j != i) {
+                return (intArrayOf(i, j))
             }
-            x++
+            i++
         }
-        return (intArrayOf(x, y))
+        return (intArrayOf(i, j))
     }
 
     // Memory Complexity: O(1)
