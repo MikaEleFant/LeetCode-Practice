@@ -13,20 +13,20 @@
 
 fun main() {
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        var i = 0
-        var remainder: Int
-        var j = 0
-        while (i < nums.size) {
-            remainder = target - nums[i]
-            j = nums.indexOf(remainder)
-            if (j != -1 && j != i) {
-                return (intArrayOf(i, j))
+        var hashMap = HashMap<Int, Int>()
+        var result = IntArray(2)
+        for ((i, num) in nums.withIndex()) {
+            var difference = target - num
+            if (hashMap.containsKey(difference)) {
+                result[0] = hashMap[difference]!!
+                result[1] = i
+                return result
             }
-            i++
+            hashMap[num] = i
         }
-        return (intArrayOf(i, j))
+        return result
     }
 
-    // Memory Complexity: O(1)
-    // Time Complexity: O(n^2)
+    // Space Complexity: O(n)
+    // Time Complexity: O(n)
 }
